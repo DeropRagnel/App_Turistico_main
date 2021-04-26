@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="coord_avenida_paulista_X" translatable="false">-23.56167430370397</string>
+    <string name="coord_avenida_paulista_Y" translatable="false">-46.65592269984778</string>
+
+
+    <string name="coord_bairro_liberdade_X" translatable="false">-23.560400958315032</string>
+    <string name="coord_bairro_liberdade_Y" translatable="false">-46.631411995180414</string>
+
+
+    <string name="coord_beco_do_batman_X" translatable="false">-23.5565783552653</string>
+    <string name="coord_beco_do_batman_Y" translatable="false">-46.68661123828324</string>
+
+
+    <string name="coord_centro_cultural_bnco_brsl_X" translatable="false">-23.547433424676644</string>
+    <string name="coord_centro_cultural_bnco_brsl_Y" translatable="false">-46.63460761129746</string>
+
+
+    <string name="coord_estadio_morumbi_X" translatable="false">-23.600085097776343</string>
+    <string name="coord_estadio_morumbi_Y" translatable="false">-46.720089867730124</string>
+
+
+    <string name="coord_marco_zero_X" translatable="false">-23.550450211108043</string>
+    <string name="coord_marco_zero_Y" translatable="false">-46.6339122088356</string>
+
+
+    <string name="coord_mercado_municipal_X" translatable="false">-23.54181160772233</string>
+    <string name="coord_mercado_municipal_Y" translatable="false">-46.62938633827819</string>
+
+
+    <string name="coord_mosteiro_de_sao_bento_X" translatable="false">-23.54387126228106</string>
+    <string name="coord_mosteiro_de_sao_bento_Y" translatable="false">-46.63379959471734</string>
+
+
+    <string name="coord_masp_X" translatable="false">-23.56167430370397</string>
+    <string name="coord_masp_Y" translatable="false">-46.65592269984778</string>
+
+
+    <string name="coord_parque_ibirapuera_X" translatable="false">-23.587422944402807</string>
+    <string name="coord_parque_ibirapuera_Y" translatable="false">-46.65763460883486</string>
+
+
+    <string name="coord_pateo_do_colegio_X" translatable="false">-23.547984640188247</string>
+    <string name="coord_pateo_do_colegio_Y" translatable="false">-46.632620306047514</string>
+
+
+    <string name="coord_pico_jaragua_X" translatable="false">-23.458324972973347</string>
+    <string name="coord_pico_jaragua_Y" translatable="false">-46.765279053023455</string>
+
+
+    <string name="coord_pinacoteca_X" translatable="false">-23.534596995472274</string>
+    <string name="coord_pinacoteca_Y" translatable="false">-46.634021483533644</string>
+
+
+    <string name="coord_rua_25_de_marco_X" translatable="false">-23.543611489957353</string>
+    <string name="coord_rua_25_de_marco_Y" translatable="false">-46.632520238283554</string>
+
+
+    <string name="coord_solar_da_marqueza_X" translatable="false">-23.54857049338692</string>
+    <string name="coord_solar_da_marqueza_Y" translatable="false">-46.63220589779113</string>
+
+
+    <string name="coord_trilha_mata_atlantica_X" translatable="false">-23.462706407754744</string>
+    <string name="coord_trilha_mata_atlantica_Y" translatable="false">-46.75830369902629</string>
+</resources>

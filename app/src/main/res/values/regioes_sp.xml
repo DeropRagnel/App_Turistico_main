@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="centro" translatable="false">
+        Central
+    </string>
+
+    <string name="norte" translatable="false">
+        Norte
+    </string>
+
+    <string name="sul" translatable="false">
+        Sul
+    </string>
+
+    <string name="leste" translatable="false">
+        Leste
+    </string>
+
+    <string name="oeste" translatable="false">
+        Oeste
+    </string>
+
+</resources>

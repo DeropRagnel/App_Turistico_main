@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">App_Turistico</string>
+
+    <string name="search_text">Pesquise Aqui</string>
+    <string name="titulo_pnts_turstcos">Pontos de São Paulo</string>
+
+    <string-array name="language_option">
+        <item>Português</item>
+        <item>English</item>
+        <item>Español</item>
+    </string-array>
+    <string name="title_activity_maps">Map</string>
+</resources>

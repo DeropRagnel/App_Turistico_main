@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="avenida_paulista" translatable="false">
+        Avenida Paulista
+    </string>
+
+    <string name="bairro_liberdade" translatable="false">
+        Bairro Liberdade
+    </string>
+
+    <string name="beco_do_batman" translatable="false">
+        Beco Do Batman
+    </string>
+
+    <string name="centro_cultural_bnco_brsl" translatable="false">
+        Centro Cultural
+    </string>
+
+    <string name="estadio_morumbi" translatable="false">
+        Estadio Morumbi
+    </string>
+
+    <string name="marco_zero" translatable="false">
+        Marco Zero
+    </string>
+
+    <string name="mercado_municipal" translatable="false">
+        Mercado Municipal
+    </string>
+
+    <string name="monumento_bandeirantes" translatable="false">
+        Monumento dos Bandeirantes
+    </string>
+
+    <string name="mosteiro_de_sao_bento" translatable="false">
+        Mosteiro de São Bento
+    </string>
+
+    <string name="masp" translatable="false">
+        MASP
+    </string>
+
+    <string name="parque_ibirapuera" translatable="false">
+        Parque Ibirapuera
+    </string>
+
+    <string name="pateo_do_colegio" translatable="false">
+        Pateo do Colegio
+    </string>
+
+    <string name="pico_jaragua" translatable="false">
+        Pico Jaragua
+    </string>
+
+    <string name="pinacoteca" translatable="false">
+        Pinacoteca
+    </string>
+
+    <string name="rua_25_de_marco" translatable="false">
+        Rua 25 de Março
+    </string>
+
+    <string name="solar_da_marqueza" translatable="false">
+        Solar da Marqueza
+    </string>
+
+    <string name="trilha_mata_atlantica" translatable="false">
+        Trilha da Mata Atlântica
+    </string>
+</resources>

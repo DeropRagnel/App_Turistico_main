@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Tela_Descricao"
+    android:background="@color/white_orange">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/descricao_image"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:src="@drawable/avenida_paulista_sp"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/txt_nome_pnt_turstco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="@string/avenida_paulista"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/orange"
+            android:textSize="36dp"
+            android:letterSpacing="0.05"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/txt_descricao_pnt_turstco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:text="@string/desc_avenida_paulista"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="18dp"
+            android:lineSpacingExtra="4dp"
+            android:textAlignment="center"/>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/mapLocal"/>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="desc_avenida_paulista">
+        A Avenida Paulista é considerada um dos principais centros financeiros da cidade, assim como também um dos seus pontos turísticos mais característicos, a avenida revela sua importância não só como polo econômico, mas também como centralidade cultural e de entretenimento, além de abrigar um grande número de sedes de empresas, bancos, consulados, hotéis e hospitais.
+    </string>
+
+    <string name="desc_bairro_liberdade">
+        Liberdade é um bairro turístico é conhecido como o maior reduto da comunidade japonesa do mundo fora do Japão. O bairro guarda muito da tradição japonesa e oriental através das festas típicas que se realizam ao longo do ano, como: Ano-novo chinês, Hanamatsuri, Tanabata Matsuri, Toyo Matsuri, Moti Tsuki e outros.
+    </string>
+
+    <string name="desc_beco_do_batman">
+        O Beco do Batman é uma travessa localizada na Vila Madalena, um bairro boêmio da zona oeste da cidade de São Paulo. O trecho recebeu esse nome devido a um grafite do personagem homônimo da DC Comics há muitos anos, e acabou por se tornar um ponto de turismo devido a dezenas de grafites pintados em seus muros.
+    </string>
+
+    <string name="desc_centro_cultural_bnco_brsl">
+        O Centro Cultural Banco do Brasil São Paulo, também conhecido como CCBB São Paulo, foi inaugurado em 21 de abril de 2001. O antigo edifício, construído em 1901, foi comprado em 1923 pelo Banco do Brasil, foi o primeiro prédio próprio do Banco do Brasil em São Paulo.
+        <br />
+        Os elementos da arquitetura original foram restaurados, mantendo assim as linhas que o tornam um dos mais significativos exemplos da arquitetura do início do século desta cidade.
+    </string>
+
+    <string name="desc_estadio_morumbi">
+        O Estádio Cícero Pompeu de Toledo, mais conhecido como Estádio do Morumbi, é um estádio construído para receber partidas de futebol, sendo a sede oficial do time brasileiro de futebol São Paulo Futebol Clube, já tendo recebido a Seleção Brasileira em várias ocasiões. O estádio foi projetado para acomodar 150 mil espectadores, mas, devido a diversas reformas e à instalação de camarotes, sua capacidade foi reduzida para 72 039.
+    </string>
+
+    <string name="desc_marco_zero">
+        Marco Zero da Praça da Sé é um monumento geográfico em frente à Catedral da Sé. O prisma hexagonal revestido de mármore representa o centro geográfico da cidade, onde todas as medições de distância situadas nas placas toponímicas da mesma são estabelecidas e a prefeitura de São Paulo reconhece o monumento como um forte sentimento paulista, ressaltando o papel de formação não apenas do Estado de São Paulo, mas também do Brasil. O Marco Zero é pleno de valor simbólico
+    </string>
+
+    <string name="desc_mercado_municipal">
+        Mercado Municipal Paulistano, também conhecido como Mercadão, é um importante prédio histórico e arquitetônico da cidade, o Mercado Municipal também se destaca hoje como polo cultural e turístico. O edifício passou por restauro em 2004, que incluiu a construção de um mezanino para abrigar restaurantes.
+    </string>
+
+    <string name="desc_mosteiro_de_sao_bento">
+        O Mosteiro de São Bento é um local histórico e religioso. Cerca de 45 monges vivem no Mosteiro, onde dedicam suas vidas à tradição do "ora e trabalha", os religiosos estão sempre dispostos a receber hóspedes e visitantes, acolhendo os que vêm à procura de oração, retiro, orientação espiritual ou confissão.Os religiosos estão sempre dispostos a receber hóspedes e visitantes, acolhendo os que vêm à procura de oração, retiro, orientação espiritual ou confissão.
+    </string>
+
+    <string name="desc_masp">
+        Museu de Arte de São Paulo Assis Chateaubriand é uma das mais importantes instituições culturais brasileiras. Ele foi fundado em 1947 e ao longo de sua história, notabilizou-se por uma série de iniciativas importantes no campo da museologia e da formação artística, bem como por sua forte atuação didática além de possuir a mais importante e abrangente coleção de arte ocidental da América Latina e de todo o hemisfério sul, em que se notabilizam sobretudo os consistentes conjuntos referentes às escolas italiana e francesa.
+    </string>
+
+    <string name="desc_parque_ibirapuera">
+        O Parque Ibirapuera é um parque urbano que em 2017 foi o parque mais visitado da América Latina, com aproximadamente 14 milhões de visitas, além de ser um dos locais mais fotografados do mundo.
+        <br />
+        O parque há diversos atrativos para o público desde passeios culturais e educativos como caminhadas monitoradas, atividades de observação de pássaros, possuindo esculturas, museus e monumentos históricos além dos jardins e paisagens repletas de flores e árvores.
+    </string>
+
+    <string name="desc_pateo_do_colegio">
+        O Pátio do Colégio é um sítio arqueológico, uma obra apostólica pertencente à Companhia de Jesus. Composto pelo Museu Anchieta, Auditório Manoel da Nóbrega, Galeria Tenerife, praça Ilhas Canárias e a Igreja Beato José de Anchieta. São celebradas missas diárias na Igreja, ao meio dia. Aos domingos, a missa é celebrada às 10:00 horas.
+    </string>
+
+    <string name="desc_pico_jaragua">
+        Pico do Jaraguá é um dos pontos mais altos do município de São Paulo e pode-se ascender ao seu cume por uma via asfaltada (Estrada Turística do Jaraguá) e através da Trilha do Pai Zé (1 450 metros de extensão). Ao se atingir o topo, tem-se uma visão principalmente da parte oeste da Grande São Paulo. Também pode ser avistado o Rodoanel Mário Covas, na parte posterior.
+    </string>
+
+    <string name="desc_pinacoteca">
+        A Pinacoteca do Estado de São Paulo é um dos mais importantes museus de arte do Brasil. Após a reforma na década de 1990, tornou-se uma das mais dinâmicas instituições culturais do país, integrando-se ao circuito internacional de exposições, promovendo eventos culturais diversos e mantendo uma ativa produção bibliográfica.
+    </string>
+
+    <string name="desc_rua_25_de_marco">
+        A Rua 25 de Março  é uma via pública localizada na região central da cidade de São Paulo que é considerada como o maior centro comercial da América Latina, pois consiste em um dos mais movimentados centros de compras varejistas e atacadistas da cidade. Sua origem está ligada a importantes processos de colonização e urbanização da capital paulistana, sendo uma importante região para a história da cidade devido às suas atividades comerciais e sociais.
+    </string>
+
+    <string name="desc_solar_da_marqueza">
+        O Solar da Marquesa de Santos, é sede do Museu da Cidade de São Paulo e recebe diversas exposições culturais. As primeiras referências em documentos ao Solar da Marquesa de Santos são datadas do período entre 1739 e 1754 com diversas arquiteturas, moveis e casas dessa epoca.
+    </string>
+
+    <string name="desc_trilha_mata_atlantica">
+        O Caminho da Mata Atlântica é uma trilha brasileira que cruza  a Serra do Mar, cujo ecossistema predominante é a Mata Atlântica. Com mais de 4 mil km de extensão, a trilha terá início no Parque Nacional de Aparados da Serra, no norte do Rio Grande do Sul, e se estenderá até o Parque Estadual do Desengano, no norte do Rio de Janeiro.
+
+    </string>
+</resources>

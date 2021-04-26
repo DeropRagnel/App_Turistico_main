@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="50dp"
+    app:cardElevation="8dp"
+    android:layout_margin="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="25dp">
+
+        <ImageView
+            android:id="@+id/card_pnt_turstco_image"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/monumento_bandeirantes"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/card_pnt_turstco_regiaoNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="Região"
+                android:fontFamily="@font/heavy"
+                android:textColor="@color/orange"
+                android:textSize="12dp"/>
+
+            <TextView
+                android:id="@+id/card_pnt_turstco_localNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginLeft="8dp"
+                android:text="Monumento dos Bandeirantes"
+                android:fontFamily="@font/heavy"
+                android:textColor="#000"
+                android:textSize="18dp"
+                android:letterSpacing="0.05"
+                android:lineSpacingExtra="6dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
