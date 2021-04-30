@@ -19,4 +19,9 @@
     <string name="desc_trilha_mata_atlantica">El Sendero de la Mata Atlántica es un sendero brasileño que atraviesa la Serra do Mar, cuyo ecosistema predominante es la Mata Atlántica. Con más de 4 mil km de extensión, el sendero comenzará en el Parque Nacional Aparados da Serra, en el norte de Rio Grande do Sul, y se extenderá hasta el Parque Estatal Desengano, en el norte de Rio de Janeiro.</string>
     <string name="search_text">" Busca aquí"</string>
     <string name="titulo_pnts_turstcos">Puntos de São Paulo</string>
+    <string name="aviso_acesso_localizacao">Esta aplicación requiere el uso de GPS para funcionar correctamente, ¿te gustaría permitirlo?</string>
+    <string name="centro">Región Central</string>
+    <string name="suldoeste">Región suroeste</string>
+    <string name="sul">Región Sur</string>
+    <string name="oeste">Región Oeste</string>
 </resources>

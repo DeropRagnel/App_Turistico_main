@@ -13,10 +13,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +44,8 @@ public class Tela_Descricao extends AppCompatActivity implements OnMapReadyCallb
 
     ImageView descricao_image;
     TextView txt_nome_pnt_turstco, txt_descricao_pnt_turstco;
+    Spinner sLanguage;
+    ArrayAdapter langAdapter;
     private GoogleMap mMap;
 
     @Override
@@ -51,12 +58,60 @@ public class Tela_Descricao extends AppCompatActivity implements OnMapReadyCallb
         txt_nome_pnt_turstco = findViewById(R.id.txt_nome_pnt_turstco);
         txt_descricao_pnt_turstco = findViewById(R.id.txt_descricao_pnt_turstco);
 
+
         descricao_image.setImageResource(getIntent().getIntExtra("Imagem", 0));
         txt_nome_pnt_turstco.setText(getIntent().getStringExtra("LocalNome"));
-        txt_descricao_pnt_turstco.setText(getIntent().getStringExtra("Descricao"));
+        txt_descricao_pnt_turstco.setText(getIntent().getIntExtra("Descricao", 0));
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapLocal);
         mapFragment.getMapAsync(this);
+
+
+        //Tradutor
+        sLanguage = findViewById(R.id.sLanguage);
+        langAdapter = new ArrayAdapter<String>(Tela_Descricao.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.language_option));
+        sLanguage.setAdapter(langAdapter);
+
+        if (LocaleHelper.getLanguage(Tela_Descricao.this).equalsIgnoreCase("pt_br")) {
+            sLanguage.setSelection(langAdapter.getPosition("Português"));
+        } else if (LocaleHelper.getLanguage(Tela_Descricao.this).equalsIgnoreCase("en")) {
+            sLanguage.setSelection(langAdapter.getPosition("English"));
+        } else {
+            sLanguage.setSelection(langAdapter.getPosition("Español"));
+        }
+
+        sLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Context context;
+                Resources resources;
+                switch (i) {
+                    case 0:
+                        context = LocaleHelper.setLocale(Tela_Descricao.this, "pt_br");
+                        resources = context.getResources();
+                        txt_descricao_pnt_turstco.setText(resources.getString(getIntent().getIntExtra("Descricao", 0)));
+                        break;
+
+                    case 1:
+                        context = LocaleHelper.setLocale(Tela_Descricao.this, "en");
+                        resources = context.getResources();
+                        txt_descricao_pnt_turstco.setText(resources.getString(getIntent().getIntExtra("Descricao", 0)));
+                        break;
+
+                    case 2:
+                        context = LocaleHelper.setLocale(Tela_Descricao.this, "es");
+                        resources = context.getResources();
+                        txt_descricao_pnt_turstco.setText(resources.getString(getIntent().getIntExtra("Descricao", 0)));
+                        break;
+                }
+                ((TextView)view).setText(null);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
     }
 

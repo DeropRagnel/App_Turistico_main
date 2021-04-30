@@ -13,12 +13,22 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.Image;
 import android.os.Bundle;
 
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.app_turistico.HomeAdapter.FeaturedAdapter;
@@ -38,8 +48,10 @@ import static com.example.app_turistico.Constantes.PERMISSIONS_REQUEST_ENABLE_GP
 public class Tela_Pontos_Turisticos extends AppCompatActivity {
 
     RecyclerView featuredRecycler;
-    RecyclerView.Adapter adapter;
     SearchView searchPtn;
+    Spinner sLanguage;
+    ArrayAdapter langAdapter;
+    TextView tituloPtn;
 
     FeaturedAdapter featuredAdapter;
 
@@ -51,26 +63,78 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela__pontos__turisticos);
-        getSupportActionBar().hide();
 
+        tituloPtn = findViewById(R.id.txt_titulo);
+
+        //Reciclador
         featuredRecycler = (RecyclerView) findViewById(R.id.featured_recycler);
         featuredRecycler();
 
+        //Filtro
         searchPtn = (SearchView) findViewById(R.id.search_pnt_turst);
         Filtrar();
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+
+        //Tradutor
+        sLanguage = findViewById(R.id.sLanguage);
+        langAdapter = new ArrayAdapter<String>(Tela_Pontos_Turisticos.this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.language_option));
+        sLanguage.setAdapter(langAdapter);
+
+        if (LocaleHelper.getLanguage(Tela_Pontos_Turisticos.this).equalsIgnoreCase("pt_br")) {
+            sLanguage.setSelection(langAdapter.getPosition("Português"));
+        } else if (LocaleHelper.getLanguage(Tela_Pontos_Turisticos.this).equalsIgnoreCase("en")) {
+            sLanguage.setSelection(langAdapter.getPosition("English"));
+        } else {
+            sLanguage.setSelection(langAdapter.getPosition("Español"));
+        }
+
+        sLanguage.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Context context;
+                Resources resources;
+                switch (i) {
+                    case 0:
+                        context = LocaleHelper.setLocale(Tela_Pontos_Turisticos.this, "pt_br");
+                        resources = context.getResources();
+                        tituloPtn.setText(resources.getString(R.string.titulo_pnts_turstcos));
+                        searchPtn.setQueryHint(resources.getString(R.string.search_text));
+                        featuredRecycler.setAdapter(featuredAdapter);
+                        break;
+
+                    case 1:
+                        context = LocaleHelper.setLocale(Tela_Pontos_Turisticos.this, "en");
+                        resources = context.getResources();
+                        tituloPtn.setText(resources.getString(R.string.titulo_pnts_turstcos));
+                        searchPtn.setQueryHint(resources.getString(R.string.search_text));
+                        featuredRecycler.setAdapter(featuredAdapter);
+                        break;
+
+                    case 2:
+                        context = LocaleHelper.setLocale(Tela_Pontos_Turisticos.this, "es");
+                        resources = context.getResources();
+                        tituloPtn.setText(resources.getString(R.string.titulo_pnts_turstcos));
+                        searchPtn.setQueryHint(resources.getString(R.string.search_text));
+                        featuredRecycler.setAdapter(featuredAdapter);
+                        break;
+                }
+                ((TextView)view).setText(null);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
+
+
 
     //Reciclador
     private void featuredRecycler() {
-
-        //Regioes
-        String rg_central = getString(R.string.centro);
-        String rg_norte = getString(R.string.norte);
-        String rg_sul = getString(R.string.sul);
-        String rg_leste = getString(R.string.leste);
-        String rg_oeste = getString(R.string.oeste);
 
         //Nomes dos Locais
         String avenida_paulista = getString(R.string.avenida_paulista);
@@ -90,23 +154,6 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
         String solar_da_marqueza = getString(R.string.solar_da_marqueza);
         String trilha_mata_atlantica = getString(R.string.trilha_mata_atlantica);
 
-        //Descrições
-        String desc_avenida_paulista = getString(R.string.desc_avenida_paulista);
-        String desc_bairro_liberdade = getString(R.string.desc_bairro_liberdade);
-        String desc_beco_do_batman = getString(R.string.desc_beco_do_batman);
-        String desc_centro_cultural_bnco_brsl = getString(R.string.desc_centro_cultural_bnco_brsl);
-        String desc_estadio_morumbi = getString(R.string.desc_estadio_morumbi);
-        String desc_marco_zero = getString(R.string.desc_marco_zero);
-        String desc_mercado_municipal = getString(R.string.desc_mercado_municipal);
-        String desc_mosteiro_de_sao_bento = getString(R.string.desc_mosteiro_de_sao_bento);
-        String desc_masp = getString(R.string.desc_masp);
-        String desc_parque_ibirapuera = getString(R.string.desc_parque_ibirapuera);
-        String desc_pateo_do_colegio = getString(R.string.desc_pateo_do_colegio);
-        String desc_pico_jaragua = getString(R.string.desc_pico_jaragua);
-        String desc_pinacoteca = getString(R.string.desc_pinacoteca);
-        String desc_rua_25_de_marco = getString(R.string.desc_rua_25_de_marco);
-        String desc_solar_da_marqueza = getString(R.string.desc_solar_da_marqueza);
-        String desc_trilha_mata_atlantica = getString(R.string.desc_trilha_mata_atlantica);
 
         //Coordenadas
         double avenida_paulistaX = Double.parseDouble(getString(R.string.coord_avenida_paulista_X));    double avenida_paulistaY = Double.parseDouble(getString(R.string.coord_avenida_paulista_Y));
@@ -133,22 +180,23 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
 
         ArrayList<FeaturedHelperClass> featuredLocation = new ArrayList<>();
 
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.avenida_paulista_sp, "Região " + rg_central, avenida_paulista, desc_avenida_paulista, avenida_paulistaX, avenida_paulistaY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.bairro_liberdade_sp, "Região " + rg_central, bairro_liberdade, desc_bairro_liberdade, bairro_liberdadeX, bairro_liberdadeY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.beco_do_batman_sp, "Região " + rg_oeste, beco_do_batman, desc_beco_do_batman, beco_do_batmanX, beco_do_batmanY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.centro_cultural_bnco_brsl_sp, "Região " + rg_central, centro_cultural_bnco_brsl, desc_centro_cultural_bnco_brsl, centro_cultural_bnco_brslX, centro_cultural_bnco_brslY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.estadio_morumbi_sp, "Região " + rg_oeste + "/" + rg_sul, estadio_morumbi, desc_estadio_morumbi, estadio_morumbiX, estadio_morumbiY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.marco_zero_sp, "Região " + rg_central, marco_zero, desc_marco_zero, marco_zeroX, marco_zeroY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.mercado_municipal_sp, "Região " + rg_central, mercado_municipal, desc_mercado_municipal, mercado_municipalX, mercado_municipalY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.mosteiro_de_sao_bento_sp, "Região " + rg_central, mosteiro_de_sao_bento, desc_mosteiro_de_sao_bento, mosteiro_de_sao_bentoX, mosteiro_de_sao_bentoY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.museu_de_arte_sp, "Região " + rg_central, masp, desc_masp, maspX, maspY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.parque_ibirapuera_sp, "Região " + rg_sul,parque_ibirapuera, desc_parque_ibirapuera, parque_ibirapueraX, parque_ibirapueraY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.pateo_do_colegio_sp, "Região " + rg_central, pateo_do_colegio, desc_pateo_do_colegio, pateo_do_colegioX, pateo_do_colegioY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.pico_jaragua_sp, "Região " + rg_oeste, pico_jaragua, desc_pico_jaragua, pico_jaraguaX, pico_jaraguaY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.pinacoteca_sp, "Região " + rg_central, pinacoteca, desc_pinacoteca, pinacotecaX, pinacotecaY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.rua_25_de_marco_sp, "Região " + rg_central, rua_25_de_marco, desc_rua_25_de_marco, rua_25_de_marcoX, rua_25_de_marcoY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.solar_da_marqueza_de_santos_sp, "Região " + rg_central, solar_da_marqueza, desc_solar_da_marqueza, solar_da_marquezaX, solar_da_marquezaY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.trilha_mata_atlantica_sp, "Região " + rg_sul, trilha_mata_atlantica, desc_trilha_mata_atlantica, trilha_mata_atlanticaX, trilha_mata_atlanticaY));
+
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.avenida_paulista_sp, R.string.centro, avenida_paulista, R.string.desc_avenida_paulista, avenida_paulistaX, avenida_paulistaY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.bairro_liberdade_sp, R.string.centro, bairro_liberdade, R.string.desc_bairro_liberdade, bairro_liberdadeX, bairro_liberdadeY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.beco_do_batman_sp, R.string.oeste, beco_do_batman, R.string.desc_beco_do_batman, beco_do_batmanX, beco_do_batmanY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.centro_cultural_bnco_brsl_sp, R.string.centro, centro_cultural_bnco_brsl, R.string.desc_centro_cultural_bnco_brsl, centro_cultural_bnco_brslX, centro_cultural_bnco_brslY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.estadio_morumbi_sp, R.string.suldoeste, estadio_morumbi, R.string.desc_estadio_morumbi, estadio_morumbiX, estadio_morumbiY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.marco_zero_sp, R.string.centro, marco_zero, R.string.desc_marco_zero, marco_zeroX, marco_zeroY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.mercado_municipal_sp, R.string.centro, mercado_municipal, R.string.desc_mercado_municipal, mercado_municipalX, mercado_municipalY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.mosteiro_de_sao_bento_sp, R.string.centro, mosteiro_de_sao_bento, R.string.desc_mosteiro_de_sao_bento, mosteiro_de_sao_bentoX, mosteiro_de_sao_bentoY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.museu_de_arte_sp, R.string.centro, masp, R.string.desc_masp, maspX, maspY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.parque_ibirapuera_sp, R.string.sul, parque_ibirapuera, R.string.desc_parque_ibirapuera, parque_ibirapueraX, parque_ibirapueraY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.pateo_do_colegio_sp, R.string.centro, pateo_do_colegio, R.string.desc_pateo_do_colegio, pateo_do_colegioX, pateo_do_colegioY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.pico_jaragua_sp,  R.string.sul, pico_jaragua, R.string.desc_pico_jaragua, pico_jaraguaX, pico_jaraguaY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.pinacoteca_sp, R.string.centro, pinacoteca, R.string.desc_pinacoteca, pinacotecaX, pinacotecaY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.rua_25_de_marco_sp, R.string.centro, rua_25_de_marco, R.string.desc_rua_25_de_marco, rua_25_de_marcoX, rua_25_de_marcoY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.solar_da_marqueza_de_santos_sp, R.string.centro, solar_da_marqueza, R.string.desc_solar_da_marqueza, solar_da_marquezaX, solar_da_marquezaY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.trilha_mata_atlantica_sp,  R.string.sul, trilha_mata_atlantica, R.string.desc_trilha_mata_atlantica, trilha_mata_atlanticaX, trilha_mata_atlanticaY));
 
 
         featuredAdapter = new FeaturedAdapter(featuredLocation,getApplicationContext());
@@ -195,7 +243,7 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
 
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Esse Aplicativo requer o uso de GPS para funcionar corretamente, você gostaria de permitir?")
+        builder.setMessage(R.string.aviso_acesso_localizacao)
                 .setCancelable(false)
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {

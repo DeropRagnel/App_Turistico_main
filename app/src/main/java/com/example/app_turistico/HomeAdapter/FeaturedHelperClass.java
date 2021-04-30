@@ -3,11 +3,11 @@ package com.example.app_turistico.HomeAdapter;
 import com.google.android.gms.maps.model.LatLng;
 
 public class FeaturedHelperClass {
-    int Image;
-    String RegiaoNome, LocalNome, Descricao;
+    int Image, Descricao, RegiaoNome;
+    String LocalNome;
     double CoordenadasX, CoordenadasY;
 
-    public FeaturedHelperClass(int Image, String regiaoNome, String localNome, String descricao, double coordenadasX, double coordenadasY) {
+    public FeaturedHelperClass(int Image, int regiaoNome, String localNome, int descricao, double coordenadasX, double coordenadasY) {
         this.Image = Image;
         this.RegiaoNome = regiaoNome;
         this.LocalNome = localNome;
@@ -21,7 +21,7 @@ public class FeaturedHelperClass {
         return Image;
     }
 
-    public String getRegiaoNome() {
+    public int getRegiaoNome() {
         return RegiaoNome;
     }
 
@@ -29,7 +29,7 @@ public class FeaturedHelperClass {
         return LocalNome;
     }
 
-    public String getDescricao() {
+    public int getDescricao() {
         return Descricao;
     }
 

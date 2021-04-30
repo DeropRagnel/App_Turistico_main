@@ -9,5 +9,9 @@
         <item>English</item>
         <item>Español</item>
     </string-array>
-    <string name="title_activity_maps">Map</string>
+
+    <string name="title_activity_maps" translatable="false">Map</string>
+    
+    <string name="aviso_acesso_localizacao">Esse Aplicativo requer o uso de GPS para funcionar corretamente, você gostaria de permitir?</string>
+    
 </resources>

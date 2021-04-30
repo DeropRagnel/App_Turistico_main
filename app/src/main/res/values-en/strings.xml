@@ -19,4 +19,9 @@
     <string name="desc_trilha_mata_atlantica">The Atlantic Forest Path is a Brazilian trail that crosses the Serra do Mar, whose predominant ecosystem is the Atlantic Forest. With more than 4 thousand km of extension, the trail will start in the Aparados da Serra National Park, in the north of Rio Grande do Sul, and will extend until the Desengano State Park, in the north of Rio de Janeiro.</string>
     <string name="search_text">Search Here</string>
     <string name="titulo_pnts_turstcos">Attractions of São Paulo</string>
+    <string name="aviso_acesso_localizacao">This application requires the use of GPS to work correctly, would you like to allow it?</string>
+    <string name="centro">Central Region</string>
+    <string name="sul">South Region</string>
+    <string name="suldoeste" translatable="false">Southwestern Region</string>
+    <string name="oeste">Region West</string>
 </resources>

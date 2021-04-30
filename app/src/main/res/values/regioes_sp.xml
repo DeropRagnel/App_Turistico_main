@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="centro" translatable="false">
-        Central
+    <string name="centro">
+        Região Central
     </string>
 
-    <string name="norte" translatable="false">
-        Norte
+
+    <string name="sul">
+        Região Sul
     </string>
 
-    <string name="sul" translatable="false">
-        Sul
+
+    <string name="oeste">
+        Região Oeste
     </string>
 
-    <string name="leste" translatable="false">
-        Leste
-    </string>
 
-    <string name="oeste" translatable="false">
-        Oeste
+    <string name="suldoeste">
+        Região Suldoeste
     </string>
 
 </resources>
