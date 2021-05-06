@@ -24,4 +24,12 @@
     <string name="sul">South Region</string>
     <string name="suldoeste" translatable="false">Southwestern Region</string>
     <string name="oeste">Region West</string>
+    <string name="titulo_cadastro">Register</string>
+    <string name="titulo_Login">Login</string>
+    <string name="digite_seu_email">" Type your Email"</string>
+    <string name="digite_sua_senha">" Type your Password"</string>
+    <string name="confirme_sua_senha">Confirm your Password</string>
+    <string name="botao_cadastro">Register</string>
+    <string name="botao_login">Sign In</string>
+    <string name="botao_criar_conta">Create an account</string>
 </resources>

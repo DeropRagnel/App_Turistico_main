@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="titulo_cadastro">
+        Cadastre-se
+    </string>
+
+    <string name="titulo_Login">
+        Login
+    </string>
+
+    <string name="digite_seu_email">
+        Digite seu Email
+    </string>
+
+    <string name="digite_sua_senha">
+        Digite sua Senha
+    </string>
+
+    <string name="confirme_sua_senha">
+        Confirme sua Senha
+    </string>
+
+    <string name="botao_cadastro">
+        Cadastre-se
+    </string>
+
+    <string name="botao_login">
+        Entre
+    </string>
+
+    <string name="botao_criar_conta">
+        Crie uma conta
+    </string>
+</resources>

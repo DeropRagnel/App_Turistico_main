@@ -34,6 +34,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.maps.GeoApiContext;
 
 import static com.example.app_turistico.Constantes.ERROR_DIALOG_REQUEST;
 import static com.example.app_turistico.Constantes.MAPVIEW_BUNDLE_KEY;
@@ -47,12 +48,12 @@ public class Tela_Descricao extends AppCompatActivity implements OnMapReadyCallb
     Spinner sLanguage;
     ArrayAdapter langAdapter;
     private GoogleMap mMap;
+    private GeoApiContext geoApiContext = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela__descricao);
-        getSupportActionBar().hide();
 
         descricao_image = findViewById(R.id.descricao_image);
         txt_nome_pnt_turstco = findViewById(R.id.txt_nome_pnt_turstco);
@@ -125,6 +126,10 @@ public class Tela_Descricao extends AppCompatActivity implements OnMapReadyCallb
         LatLng PntCoordenadas = new LatLng(coordenadasX, coordenadasY);
         mMap.addMarker(new MarkerOptions().position(new LatLng(0,0)).title("Marker"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(PntCoordenadas,18));
+
+        if (geoApiContext == null){
+            geoApiContext = new GeoApiContext.Builder().apiKey(getString(R.string.google_maps_key)).build();
+        }
     }
 
 }
