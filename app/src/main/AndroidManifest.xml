@@ -23,7 +23,15 @@
             android:value="@string/google_maps_key" />
 
 
-        <activity android:name=".Tela_Pontos_Turisticos"
+        <activity android:name=".Tela_Login"
+            android:theme="@style/Theme.App_Turistico.NoActionBar"/>
+
+        <activity android:name=".Tela_Cadastro"
+            android:theme="@style/Theme.App_Turistico.NoActionBar"
+            android:parentActivityName=".Tela_Login"/>
+
+        <activity
+            android:name=".Tela_Pontos_Turisticos"
             android:theme="@style/Theme.App_Turistico.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +42,9 @@
 
         <activity
             android:name=".Tela_Descricao"
+            android:theme="@style/Theme.App_Turistico.NoActionBar"
             android:parentActivityName=".Tela_Pontos_Turisticos" />
+
 
         <meta-data
             android:name="com.google.android.gms.version"

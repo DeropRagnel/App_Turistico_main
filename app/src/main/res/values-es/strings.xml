@@ -24,4 +24,12 @@
     <string name="suldoeste">Región suroeste</string>
     <string name="sul">Región Sur</string>
     <string name="oeste">Región Oeste</string>
+    <string name="titulo_cadastro">" Registrarse"</string>
+    <string name="titulo_Login">Login</string>
+    <string name="digite_seu_email">Escriba su Email</string>
+    <string name="digite_sua_senha">Escribe tu Contraseña</string>
+    <string name="confirme_sua_senha">Confirmar la Contraseña</string>
+    <string name="botao_cadastro">Registrarse</string>
+    <string name="botao_login">Iniciar Sesión</string>
+    <string name="botao_criar_conta">" Crea una cuenta"</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -14,6 +15,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.media.Image;
@@ -24,6 +27,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.SearchView;
@@ -38,8 +42,15 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 import static com.example.app_turistico.Constantes.ERROR_DIALOG_REQUEST;
 import static com.example.app_turistico.Constantes.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
@@ -47,13 +58,15 @@ import static com.example.app_turistico.Constantes.PERMISSIONS_REQUEST_ENABLE_GP
 
 public class Tela_Pontos_Turisticos extends AppCompatActivity {
 
+    FeaturedAdapter featuredAdapter;
     RecyclerView featuredRecycler;
     SearchView searchPtn;
     Spinner sLanguage;
     ArrayAdapter langAdapter;
     TextView tituloPtn;
 
-    FeaturedAdapter featuredAdapter;
+    ImageButton btn_logout;
+    FirebaseAuth mAuth;
 
     private boolean mLocalizacaoGarantida = false;
     private static final String Tag = "Tela_Pontos_Turisticos";
@@ -65,6 +78,20 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
         setContentView(R.layout.activity_tela__pontos__turisticos);
 
         tituloPtn = findViewById(R.id.txt_titulo);
+
+        mAuth = FirebaseAuth.getInstance();
+        btn_logout = findViewById(R.id.btn_logout);
+
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+
+                Intent intent = new Intent(Tela_Pontos_Turisticos.this, Tela_Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         //Reciclador
         featuredRecycler = (RecyclerView) findViewById(R.id.featured_recycler);
@@ -120,7 +147,7 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
                         featuredRecycler.setAdapter(featuredAdapter);
                         break;
                 }
-                ((TextView)view).setText(null);
+                ((TextView) view).setText(null);
             }
 
             @Override
@@ -131,7 +158,16 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser usuarioatual = FirebaseAuth.getInstance().getCurrentUser();
+        if (usuarioatual == null){
+            Intent intent = new Intent(Tela_Pontos_Turisticos.this, Tela_Login.class);
+            startActivity(intent);
+            finish();
+        }
+    }
 
     //Reciclador
     private void featuredRecycler() {
@@ -140,7 +176,7 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
         String avenida_paulista = getString(R.string.avenida_paulista);
         String bairro_liberdade = getString(R.string.bairro_liberdade);
         String beco_do_batman = getString(R.string.beco_do_batman);
-        String centro_cultural_bnco_brsl =getString(R.string.centro_cultural_bnco_brsl);
+        String centro_cultural_bnco_brsl = getString(R.string.centro_cultural_bnco_brsl);
         String estadio_morumbi = getString(R.string.estadio_morumbi);
         String marco_zero = getString(R.string.marco_zero);
         String mercado_municipal = getString(R.string.mercado_municipal);
@@ -156,22 +192,38 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
 
 
         //Coordenadas
-        double avenida_paulistaX = Double.parseDouble(getString(R.string.coord_avenida_paulista_X));    double avenida_paulistaY = Double.parseDouble(getString(R.string.coord_avenida_paulista_Y));
-        double bairro_liberdadeX = Double.parseDouble(getString(R.string.coord_bairro_liberdade_X));  double bairro_liberdadeY = Double.parseDouble(getString(R.string.coord_bairro_liberdade_Y));
-        double beco_do_batmanX = Double.parseDouble(getString(R.string.coord_beco_do_batman_X));    double beco_do_batmanY = Double.parseDouble(getString(R.string.coord_beco_do_batman_Y));
-        double centro_cultural_bnco_brslX = Double.parseDouble(getString(R.string.coord_centro_cultural_bnco_brsl_X)); double centro_cultural_bnco_brslY = Double.parseDouble(getString(R.string.coord_centro_cultural_bnco_brsl_Y));
-        double estadio_morumbiX = Double.parseDouble(getString(R.string.coord_estadio_morumbi_X)); double estadio_morumbiY = Double.parseDouble(getString(R.string.coord_estadio_morumbi_Y));
-        double marco_zeroX = Double.parseDouble(getString(R.string.coord_marco_zero_X)); double marco_zeroY = Double.parseDouble(getString(R.string.coord_marco_zero_Y));
-        double mercado_municipalX = Double.parseDouble(getString(R.string.coord_mercado_municipal_X)); double mercado_municipalY = Double.parseDouble(getString(R.string.coord_mercado_municipal_Y));
-        double mosteiro_de_sao_bentoX = Double.parseDouble(getString(R.string.coord_mosteiro_de_sao_bento_X)); double mosteiro_de_sao_bentoY = Double.parseDouble(getString(R.string.coord_mosteiro_de_sao_bento_Y));
-        double maspX = Double.parseDouble(getString(R.string.coord_masp_X)); double maspY = Double.parseDouble(getString(R.string.coord_masp_Y));
-        double parque_ibirapueraX = Double.parseDouble(getString(R.string.coord_parque_ibirapuera_X)); double parque_ibirapueraY = Double.parseDouble(getString(R.string.coord_parque_ibirapuera_Y));
-        double pateo_do_colegioX = Double.parseDouble(getString(R.string.coord_pateo_do_colegio_X)); double pateo_do_colegioY = Double.parseDouble(getString(R.string.coord_pateo_do_colegio_Y));
-        double pico_jaraguaX = Double.parseDouble(getString(R.string.coord_pico_jaragua_X)); double pico_jaraguaY = Double.parseDouble(getString(R.string.coord_pico_jaragua_Y));
-        double pinacotecaX = Double.parseDouble(getString(R.string.coord_pinacoteca_X)); double pinacotecaY = Double.parseDouble(getString(R.string.coord_pinacoteca_Y));
-        double rua_25_de_marcoX = Double.parseDouble(getString(R.string.coord_rua_25_de_marco_X)); double rua_25_de_marcoY = Double.parseDouble(getString(R.string.coord_rua_25_de_marco_Y));
-        double solar_da_marquezaX = Double.parseDouble(getString(R.string.coord_solar_da_marqueza_X)); double solar_da_marquezaY = Double.parseDouble(getString(R.string.coord_solar_da_marqueza_Y));
-        double trilha_mata_atlanticaX = Double.parseDouble(getString(R.string.coord_trilha_mata_atlantica_X)); double trilha_mata_atlanticaY = Double.parseDouble(getString(R.string.coord_trilha_mata_atlantica_Y));
+        double avenida_paulistaX = Double.parseDouble(getString(R.string.coord_avenida_paulista_X));
+        double avenida_paulistaY = Double.parseDouble(getString(R.string.coord_avenida_paulista_Y));
+        double bairro_liberdadeX = Double.parseDouble(getString(R.string.coord_bairro_liberdade_X));
+        double bairro_liberdadeY = Double.parseDouble(getString(R.string.coord_bairro_liberdade_Y));
+        double beco_do_batmanX = Double.parseDouble(getString(R.string.coord_beco_do_batman_X));
+        double beco_do_batmanY = Double.parseDouble(getString(R.string.coord_beco_do_batman_Y));
+        double centro_cultural_bnco_brslX = Double.parseDouble(getString(R.string.coord_centro_cultural_bnco_brsl_X));
+        double centro_cultural_bnco_brslY = Double.parseDouble(getString(R.string.coord_centro_cultural_bnco_brsl_Y));
+        double estadio_morumbiX = Double.parseDouble(getString(R.string.coord_estadio_morumbi_X));
+        double estadio_morumbiY = Double.parseDouble(getString(R.string.coord_estadio_morumbi_Y));
+        double marco_zeroX = Double.parseDouble(getString(R.string.coord_marco_zero_X));
+        double marco_zeroY = Double.parseDouble(getString(R.string.coord_marco_zero_Y));
+        double mercado_municipalX = Double.parseDouble(getString(R.string.coord_mercado_municipal_X));
+        double mercado_municipalY = Double.parseDouble(getString(R.string.coord_mercado_municipal_Y));
+        double mosteiro_de_sao_bentoX = Double.parseDouble(getString(R.string.coord_mosteiro_de_sao_bento_X));
+        double mosteiro_de_sao_bentoY = Double.parseDouble(getString(R.string.coord_mosteiro_de_sao_bento_Y));
+        double maspX = Double.parseDouble(getString(R.string.coord_masp_X));
+        double maspY = Double.parseDouble(getString(R.string.coord_masp_Y));
+        double parque_ibirapueraX = Double.parseDouble(getString(R.string.coord_parque_ibirapuera_X));
+        double parque_ibirapueraY = Double.parseDouble(getString(R.string.coord_parque_ibirapuera_Y));
+        double pateo_do_colegioX = Double.parseDouble(getString(R.string.coord_pateo_do_colegio_X));
+        double pateo_do_colegioY = Double.parseDouble(getString(R.string.coord_pateo_do_colegio_Y));
+        double pico_jaraguaX = Double.parseDouble(getString(R.string.coord_pico_jaragua_X));
+        double pico_jaraguaY = Double.parseDouble(getString(R.string.coord_pico_jaragua_Y));
+        double pinacotecaX = Double.parseDouble(getString(R.string.coord_pinacoteca_X));
+        double pinacotecaY = Double.parseDouble(getString(R.string.coord_pinacoteca_Y));
+        double rua_25_de_marcoX = Double.parseDouble(getString(R.string.coord_rua_25_de_marco_X));
+        double rua_25_de_marcoY = Double.parseDouble(getString(R.string.coord_rua_25_de_marco_Y));
+        double solar_da_marquezaX = Double.parseDouble(getString(R.string.coord_solar_da_marqueza_X));
+        double solar_da_marquezaY = Double.parseDouble(getString(R.string.coord_solar_da_marqueza_Y));
+        double trilha_mata_atlanticaX = Double.parseDouble(getString(R.string.coord_trilha_mata_atlantica_X));
+        double trilha_mata_atlanticaY = Double.parseDouble(getString(R.string.coord_trilha_mata_atlantica_Y));
 
 
         //Reciclador
@@ -192,14 +244,14 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
         featuredLocation.add(new FeaturedHelperClass(R.drawable.museu_de_arte_sp, R.string.centro, masp, R.string.desc_masp, maspX, maspY));
         featuredLocation.add(new FeaturedHelperClass(R.drawable.parque_ibirapuera_sp, R.string.sul, parque_ibirapuera, R.string.desc_parque_ibirapuera, parque_ibirapueraX, parque_ibirapueraY));
         featuredLocation.add(new FeaturedHelperClass(R.drawable.pateo_do_colegio_sp, R.string.centro, pateo_do_colegio, R.string.desc_pateo_do_colegio, pateo_do_colegioX, pateo_do_colegioY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.pico_jaragua_sp,  R.string.sul, pico_jaragua, R.string.desc_pico_jaragua, pico_jaraguaX, pico_jaraguaY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.pico_jaragua_sp, R.string.sul, pico_jaragua, R.string.desc_pico_jaragua, pico_jaraguaX, pico_jaraguaY));
         featuredLocation.add(new FeaturedHelperClass(R.drawable.pinacoteca_sp, R.string.centro, pinacoteca, R.string.desc_pinacoteca, pinacotecaX, pinacotecaY));
         featuredLocation.add(new FeaturedHelperClass(R.drawable.rua_25_de_marco_sp, R.string.centro, rua_25_de_marco, R.string.desc_rua_25_de_marco, rua_25_de_marcoX, rua_25_de_marcoY));
         featuredLocation.add(new FeaturedHelperClass(R.drawable.solar_da_marqueza_de_santos_sp, R.string.centro, solar_da_marqueza, R.string.desc_solar_da_marqueza, solar_da_marquezaX, solar_da_marquezaY));
-        featuredLocation.add(new FeaturedHelperClass(R.drawable.trilha_mata_atlantica_sp,  R.string.sul, trilha_mata_atlantica, R.string.desc_trilha_mata_atlantica, trilha_mata_atlanticaX, trilha_mata_atlanticaY));
+        featuredLocation.add(new FeaturedHelperClass(R.drawable.trilha_mata_atlantica_sp, R.string.sul, trilha_mata_atlantica, R.string.desc_trilha_mata_atlantica, trilha_mata_atlanticaX, trilha_mata_atlanticaY));
 
 
-        featuredAdapter = new FeaturedAdapter(featuredLocation,getApplicationContext());
+        featuredAdapter = new FeaturedAdapter(featuredLocation, getApplicationContext());
         featuredRecycler.setAdapter(featuredAdapter);
 
     }
@@ -228,8 +280,40 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
     }
 
 
-
     //GoogleMaps Configuração
+
+    private void GetLastKnowLocation() {
+        Log.d(Tag, "getLastknowLocation: called");
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            return;
+        }
+        mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+            @Override
+            public void onComplete(@NonNull Task<Location> task) {
+                Location location = task.getResult();
+
+                if (location != null){
+                    try
+                    {
+                        Geocoder geocoder = new Geocoder(Tela_Pontos_Turisticos.this, Locale.getDefault());
+                        List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    }
+                    catch (IOException exception)
+                    {
+                        exception.printStackTrace();
+                    }
+
+
+                }
+
+            }
+        });
+    }
 
     private boolean checkMapServices(){
         if(isServicesOK()){
@@ -273,6 +357,7 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED) {
             mLocalizacaoGarantida = true;
             //Pode colocar o FeaturedReclycler
+            GetLastKnowLocation();
         } else {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
@@ -325,6 +410,7 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
             case PERMISSIONS_REQUEST_ENABLE_GPS: {
                 if(mLocalizacaoGarantida){
                     //Pode colocar o FeaturedReclycler
+                    GetLastKnowLocation();
                 }
                 else{
                     getLocationPermission();
@@ -340,6 +426,7 @@ public class Tela_Pontos_Turisticos extends AppCompatActivity {
         if(checkMapServices()){
             if(mLocalizacaoGarantida){
                 //Pode colocar o FeaturedReclycler
+                GetLastKnowLocation();
             }
             else{
                 getLocationPermission();
